@@ -106,7 +106,6 @@ class Violin implements ValidatorContract
         }
 
         foreach ($data as $field => $value) {
-
             // If there is no rule for the current data field, then skip
             if (!isset($rules[$field])) {
                 break;
