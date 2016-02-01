@@ -78,7 +78,7 @@ class Violin implements ValidatorContract
     /**
      * Kick off the validation using input and rules.
      *
-     * @param  array  $input
+     * @param  array  $data
      * @param  array  $rules
      *
      * @return this
@@ -106,6 +106,12 @@ class Violin implements ValidatorContract
         }
 
         foreach ($data as $field => $value) {
+
+            // If there is no rule for the current data field, then skip
+            if (!isset($rules[$field])) {
+                break;
+            }
+
             $fieldRules = explode('|', $rules[$field]);
 
             foreach ($fieldRules as $rule) {

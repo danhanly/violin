@@ -319,4 +319,35 @@ class ValidatorTest extends PHPUnit_Framework_TestCase
             'You need to have less than 3 characters.'
         );
     }
+
+    public function testSeparateDataAndRules()
+    {
+        $data = [
+            'username' => 'alexgarrett'
+        ];
+
+        $rules = [
+            'username' => 'alnum'
+        ];
+
+        $this->v->validate($data, $rules);
+
+        $this->assertTrue($this->v->passes());
+    }
+
+    public function testSeparateDataAndRulesWithMissingRule()
+    {
+        $data = [
+            'username' => 'alexgarrett',
+            'password' => '123456'
+        ];
+
+        $rules = [
+            'username' => 'alnum'
+        ];
+
+        $this->v->validate($data, $rules);
+
+        $this->assertTrue($this->v->passes());
+    }
 }
